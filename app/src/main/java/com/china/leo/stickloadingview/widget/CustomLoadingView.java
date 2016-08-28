@@ -15,6 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 import com.china.leo.stickloadingview.R;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -633,7 +634,8 @@ public class CustomLoadingView extends View
             switch (step)
             {
                 case STEP_ONE:
-                    if (distance < mMinPathDistance)
+                    Logger.d(mCenterDistance);
+                    if (distance < (mMinPathDistance - mCenterDistance / 8))
                     {
                         mIsPath = true;
                         mPathDistance = -distance;
@@ -648,7 +650,7 @@ public class CustomLoadingView extends View
                     }
                     break;
                 case STEP_THREE:
-                    if (distance < mMinPathDistance)
+                    if (distance < (mMinPathDistance - mCenterDistance / 8))
                     {
                         mIsPath = true;
                         mPathDistance = distance;
