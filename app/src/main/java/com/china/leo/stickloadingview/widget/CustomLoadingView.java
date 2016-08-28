@@ -89,6 +89,8 @@ public class CustomLoadingView extends View
     private static final int STATUS_LOADING = 1;
     /** 通过贝塞尔曲线绘制圆 */
     private static final float CIRCLE_VALUE = 0.551915024494f;
+    /** 线条颜色 */
+    private final static int[] COLORS = new int[]{0xFF7ECBDA, 0xFFE6A92C, 0xFFF0A0A5, 0xFF5ABA94};
 
     public CustomLoadingView(Context context)
     {
@@ -635,6 +637,7 @@ public class CustomLoadingView extends View
                 case STEP_ONE:
                     if (distance < (mMinPathDistance - mCenterDistance / 8))
                     {
+                        mPaint.setColor(COLORS[step]);
                         mIsPath = true;
                         mPathDistance = -distance;
 //                        Logger.d("min = %f,disatnce = %f",mMinDxistance,mPathDistance);
@@ -643,6 +646,7 @@ public class CustomLoadingView extends View
                 case STEP_TWO:
                     if (distance < mMinPathDistance)
                     {
+                        mPaint.setColor(COLORS[step]);
                         mIsPath = true;
                         mPathDistance = distance;
                     }
@@ -650,6 +654,7 @@ public class CustomLoadingView extends View
                 case STEP_THREE:
                     if (distance < (mMinPathDistance - mCenterDistance / 8))
                     {
+                        mPaint.setColor(COLORS[step]);
                         mIsPath = true;
                         mPathDistance = distance;
                     }
@@ -657,6 +662,7 @@ public class CustomLoadingView extends View
                 case STEP_FOUR:
                     if (distance < mMinPathDistance)
                     {
+                        mPaint.setColor(COLORS[step]);
                         mIsPath = true;
                         mPathDistance = -distance;
                     }
