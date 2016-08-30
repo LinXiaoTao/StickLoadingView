@@ -7,3 +7,7 @@ android:
   - extra-android-support
 script:
   - ./gradlew assembleRelease
+before_install
+- gem install fir-cli
+after_deploy:
+- fir p app/build/outputs/apk/app-release.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
