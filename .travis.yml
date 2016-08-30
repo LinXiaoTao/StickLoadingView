@@ -1,0 +1,9 @@
+anguage: android
+android:
+  components:
+  - build-tools-24.0.0
+  - android-23
+  - extra-android-m2repository
+  - extra-android-support
+script:
+  - ./gradlew assembleRelease

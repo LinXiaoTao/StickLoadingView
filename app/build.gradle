@@ -1,3 +1,5 @@
+import static java.lang.System.*
+
 apply plugin: 'com.android.application'
 
 android {
@@ -7,21 +9,33 @@ android {
     defaultConfig {
         applicationId "com.china.leo.stickloadingview"
         minSdkVersion 19
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            storeFile file('leo.jks')
+            storePassword project.hasProperty("KEYSTORE_PASS") ? KEYSTORE_PASS : getenv('KEYSTORE_PASS')
+            keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : getenv('ALIAS_NAME')
+            keyPassword project.hasProperty("ALIAS_PASS") ? ALIAS_PASS : getenv('ALIAS_PASS')
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.orhanobut:logger:1.15'
 }
