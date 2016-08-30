@@ -8,6 +8,6 @@ android:
 before_install:
 - gem install fir-cli
 script:
-- "./gradlew assembleRelease"
+- "./gradlew assembleDebug"
 after_deploy:
-- fir p app/build/outputs/apk/app-release.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
+- fir p app/build/outputs/apk/app-debug.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
