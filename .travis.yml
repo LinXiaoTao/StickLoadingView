@@ -1,14 +1,23 @@
 language: android
+
 sudo: false
+
 android:
   components:
-  - build-tools-23.0.1
-  - android-23
-  - extra-android-m2repository
-  - extra-android-support
+    - tools
+    - platform-tools
+    - build-tools-24.0.0
+    - extra-android-m2repository
+    - android-24
+
+jdk:
+  - oraclejdk8
+
 before_install:
 - gem install fir-cli
+
 script:
 - "./gradlew assembleDebug"
+
 after_deploy:
 - fir p app/build/outputs/apk/app-debug.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
