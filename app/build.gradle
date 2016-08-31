@@ -16,7 +16,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('leo.jks')
+            storeFile file('../keys/leo.jks')
             storePassword project.hasProperty("KEYSTORE_PASS") ? KEYSTORE_PASS : getenv('KEYSTORE_PASS')
             keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : getenv('ALIAS_NAME')
             keyPassword project.hasProperty("ALIAS_PASS") ? ALIAS_PASS : getenv('ALIAS_PASS')
