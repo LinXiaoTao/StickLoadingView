@@ -1,23 +1,19 @@
 language: android
-
 sudo: false
-
 android:
   components:
-    - tools
-    - platform-tools
-    - build-tools-24.0.0
-    - extra-android-m2repository
-    - android-24
-
+  - tools
+  - platform-tools
+  - build-tools-24.0.0
+  - extra-android-m2repository
+  - android-24
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 before_install:
+- openssl aes-256-cbc -K $encrypted_6b68061b8281_key -iv $encrypted_6b68061b8281_iv
+  -in leo.jks.enc -out leo.jks -d
 - gem install fir-cli
-
 script:
-- "./gradlew assembleDebug"
-
-after_deploy:
+- ./gradlew assembleRelease
+after_script:
 - fir p app/build/outputs/apk/app-debug.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
