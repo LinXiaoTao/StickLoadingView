@@ -16,4 +16,4 @@ before_install:
 script:
 - ./gradlew assembleRelease
 after_success:
-- fir p app/build/outputs/apk/app-debug.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
+- fir p app/build/outputs/apk/app-release.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
